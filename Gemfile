@@ -16,8 +16,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'turbolinks', '~> 2.5', '>= 2.5.3'
+gem 'jquery-turbolinks'
+
+gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
