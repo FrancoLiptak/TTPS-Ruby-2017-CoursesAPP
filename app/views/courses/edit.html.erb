@@ -1,6 +1,15 @@
-<h1>Editing Course</h1>
+<div class="container col-md-6 col-md-offset-3">
+    <div class="card">
+    <h4 class="card-header bg-dark text-white">Editing Course
+        <div class="float-right small">
+            <%= link_to 'Show', @course, :class => "btn btn-info" %>
+        </div>
+    </h4>
+    <div class="card-body">
+        <%= render 'form', course: @course %>
+    </div>
+    </div>
 
-<%= render 'form', course: @course %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+    <br>
+    <%= link_to 'Back', courses_path, :class => "btn btn-secondary" %>
+</div>

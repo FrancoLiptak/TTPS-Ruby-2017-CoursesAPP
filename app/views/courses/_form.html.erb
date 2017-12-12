@@ -11,12 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year, id: :course_year %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-inline col-md-12">
+    <div class="col-md-2">
+      <%= form.label :year %>
+    </div>
+    <div class="col-md-6">
+      <%= form.number_field :year, id: :course_year, class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
