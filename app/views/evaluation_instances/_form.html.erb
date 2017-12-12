@@ -1,0 +1,29 @@
+<%= form_for([@evaluation_instance.courses, @evaluation_instance]) do |f| %>
+  <% if @evaluation_instance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h2>
+
+      <ul>
+      <% @evaluation_instance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :passing_core %><br />
+    <%= f.number_field :passing_core %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

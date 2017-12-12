@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211225209) do
+ActiveRecord::Schema.define(version: 20171212021526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,28 @@ ActiveRecord::Schema.define(version: 20171211225209) do
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "evaluation_instances", force: :cascade do |t|
+    t.bigint "courses_id"
+    t.string "title"
+    t.date "date"
+    t.integer "passing_core"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["courses_id"], name: "index_evaluation_instances_on_courses_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.bigint "courses_id"
+    t.string "last_name"
+    t.string "name"
+    t.integer "dni"
+    t.string "student_number"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +62,6 @@ ActiveRecord::Schema.define(version: 20171211225209) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "evaluation_instances", "courses", column: "courses_id"
+  add_foreign_key "students", "courses", column: "courses_id"
 end

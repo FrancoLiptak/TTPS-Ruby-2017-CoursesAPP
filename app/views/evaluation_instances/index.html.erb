@@ -1,0 +1,27 @@
+<h1>Listing evaluation_instances</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Passing core</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @evaluation_instances.each do |evaluation_instance| %>
+  <tr>
+    <td><%= evaluation_instance.title %></td>
+    <td><%= evaluation_instance.date %></td>
+    <td><%= evaluation_instance.passing_core %></td>
+    <td><%= link_to 'Show', [evaluation_instance.courses, evaluation_instance] %></td>
+    <td><%= link_to 'Edit', edit_courses_evaluation_instance_path(evaluation_instance.courses, evaluation_instance) %></td>
+    <td><%= link_to 'Destroy', [evaluation_instance.courses, evaluation_instance], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Evaluation instance', new_courses_evaluation_instance_path(params[:courses_id]) %>
