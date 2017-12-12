@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :courses do
     resources :evaluation_instances
   end
+  
   devise_for :users
   get 'home/index'
 

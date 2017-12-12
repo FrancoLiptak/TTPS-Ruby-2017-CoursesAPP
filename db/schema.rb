@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171212021526) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.bigint "courses_id"
+    t.bigint "course_id"
     t.string "last_name"
     t.string "name"
     t.integer "dni"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20171212021526) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["courses_id"], name: "index_students_on_courses_id"
+    t.index ["course_id"], name: "index_students_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,5 +63,5 @@ ActiveRecord::Schema.define(version: 20171212021526) do
   end
 
   add_foreign_key "evaluation_instances", "courses", column: "courses_id"
-  add_foreign_key "students", "courses", column: "courses_id"
+  add_foreign_key "students", "courses"
 end
