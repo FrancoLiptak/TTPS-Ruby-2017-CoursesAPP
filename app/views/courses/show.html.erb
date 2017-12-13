@@ -1,16 +1,15 @@
-
-    <div class="container col-md-6 col-md-offset-3">
+<div class="container col-md-6 col-md-offset-3">
     <div class="card">
-    <h4 class="card-header bg-dark text-white">Showing Course
-        <div class="float-right small">
-            <%= link_to 'Edit', edit_course_path(@course), :class => "btn btn-info" %>
-            <%= link_to 'Students', course_students_url(@course), :class => "btn btn-info" %>
-            <%= link_to 'Evaluation Instances', course_evaluation_instance_url(@course), :class => "btn btn-info" %>
+        <h4 class="card-header bg-dark text-white">Showing Course
+            <div class="float-right small">
+                <%= link_to 'Edit', edit_course_path(@course), :class => "btn btn-info" %>
+                <%= link_to 'Students', course_students_url(@course), :class => "btn btn-info" %>
+                <%= link_to 'Evaluation Instances', course_evaluation_instance_url(@course), :class => "btn btn-info" %>
+            </div>
+        </h4>
+        <div class="card-body text-centered">
+            Here you can see everything about the course <%= @course.year %>
         </div>
-    </h4>
-    <div class="card-body text-centered">
-      Here you can see everything about the course <%= @course.year %>
-    </div>
     </div>
 
     <br>

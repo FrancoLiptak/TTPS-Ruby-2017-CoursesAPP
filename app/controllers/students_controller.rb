@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
     @student = @courses.students.build(student_params)
 
     if @student.save
-      redirect_to([@student.courses, @student], notice: 'Student was successfully created.')
+      redirect_to([@student.course, @student], notice: 'Student was successfully created.')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
   # PUT courses/1/students/1
   def update
     if @student.update_attributes(student_params)
-      redirect_to([@student.courses, @student], notice: 'Student was successfully updated.')
+      redirect_to([@student.course, @student], notice: 'Student was successfully updated.')
     else
       render action: 'edit'
     end
@@ -44,7 +44,7 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
 
-    redirect_to courses_students_url(@courses)
+    redirect_to course_students_url(@courses)
   end
 
   private
