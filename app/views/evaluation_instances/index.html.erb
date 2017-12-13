@@ -19,7 +19,7 @@
       <td><%= evaluation_instance.top_score %></td>
       <td><%= link_to 'Show', [evaluation_instance.course, evaluation_instance], :class => "btn btn-info" %></td>
       <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-success" %></td>
-      <td><%= link_to 'Destroy', [evaluation_instance.course, evaluation_instance], :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger" %></td>
+      <td><%= link_to 'Destroy', [evaluation_instance.course, evaluation_instance], :method => :delete, data: { :confirm => 'Are you sure?' },  :class => "btn btn-danger" %></td>
     </tr>
   <% end %>
   </table>
