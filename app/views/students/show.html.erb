@@ -1,9 +1,10 @@
+<p id="notice"><%= notice %></p>
+
 <div class="container col-md-6 col-md-offset-3">
   <div class="card">
       <h4 class="card-header bg-dark text-white">Showing Student
           <div class="float-right small">
             <%= link_to 'Edit', edit_course_student_path(@student.course, @student), :class => "btn btn-success" %>
-            <%= link_to 'Back', course_students_path(@student.course), :class => "btn btn-secondary" %>
           </div>
       </h4>
       <div class="card-body text-centered">
@@ -37,5 +38,5 @@
   </div>
 
   <br>
-  <%= link_to 'Back', courses_path, :class => "btn btn-secondary" %>
+  <%= link_to 'Back', course_students_path(@student.course), :class => "btn btn-secondary" %>
 </div>

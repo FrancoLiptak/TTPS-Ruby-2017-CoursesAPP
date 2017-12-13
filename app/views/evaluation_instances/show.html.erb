@@ -1,20 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @evaluation_instance.title %>
-</p>
+<div class="container col-md-6 col-md-offset-3">
+<div class="card">
+    <h4 class="card-header bg-dark text-white">Showing Student
+        <div class="float-right small">
+          <%= link_to 'Edit', edit_course_evaluation_instance_path(@evaluation_instance.course, @evaluation_instance), :class => "btn btn-success" %>
+        </div>
+    </h4>
+    <div class="card-body text-centered">
+      <div class=" col-md-12 col-lg-12 "> 
+        <table class="table table-user-information">
+          <tbody>
+              <tr>
+                  <td>Title:</td>
+                  <td> <%= @evaluation_instance.title %> </td>
+              </tr>
+              <tr>
+                  <td>Date:</td>
+                  <td> <%= @evaluation_instance.date %> </td>
+              </tr>
+              <tr>
+                  <td>Passing core:</td>
+                  <td> <%= @evaluation_instance.passing_core %> </td>
+              </tr>
+              <tr>
+                  <td>Student Number:</td>
+                  <td> <%= @student.student_number %> </td>
+              </tr>
+              <tr>
+                  <td>Email:</td>
+                  <td> <%= @student.email %> </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
 
-<p>
-  <b>Date:</b>
-  <%= @evaluation_instance.date %>
-</p>
+<br>
 
-<p>
-  <b>Passing core:</b>
-  <%= @evaluation_instance.passing_core %>
-</p>
-
-
-<%= link_to 'Edit', edit_courses_evaluation_instance_path(@evaluation_instance.courses, @evaluation_instance) %> |
-<%= link_to 'Back', courses_evaluation_instances_path(@evaluation_instance.courses) %>
+<%= link_to 'Back', course_evaluation_instances_path(@evaluation_instance.course), :class => "btn btn-secondary" %>
+</div>

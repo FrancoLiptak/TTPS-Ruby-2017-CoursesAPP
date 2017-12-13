@@ -1,29 +1,36 @@
-<%= form_for([@evaluation_instance.courses, @evaluation_instance]) do |f| %>
-  <% if @evaluation_instance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h2>
+<div class="container col-md-12 col-md-offset-6"> 
+  <%= form_for([@evaluation_instance.course, @evaluation_instance]) do |f| %>
+    <% if @evaluation_instance.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h2>
 
-      <ul>
-      <% @evaluation_instance.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @evaluation_instance.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, :class => "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :date %><br />
+        <%= f.date_select :date, :class => "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :passing_core %><br />
+        <%= f.number_field :passing_core, :class => "form-control" %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.submit class: "btn btn-success" %>
+      </div>
     </div>
-  <% end %>
+  </form>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :passing_core %><br />
-    <%= f.number_field :passing_core %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>
