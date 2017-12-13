@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :courses do
-    resources :students
+
+  resources :evaluation_instances do
+    resources :scores
   end
   resources :courses do
-    resources :evaluation_instances
+    resources :evaluation_instances do
+      resources :scores
+    end
+  
+    resources :students
   end
   
   devise_for :users
