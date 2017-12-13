@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(version: 20171212021526) do
   end
 
   create_table "evaluation_instances", force: :cascade do |t|
-    t.bigint "courses_id"
+    t.bigint "course_id"
     t.string "title"
     t.date "date"
-    t.integer "passing_core"
+    t.integer "passing_score"
+    t.integer "top_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["courses_id"], name: "index_evaluation_instances_on_courses_id"
+    t.index ["course_id"], name: "index_evaluation_instances_on_course_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -62,6 +63,6 @@ ActiveRecord::Schema.define(version: 20171212021526) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "evaluation_instances", "courses", column: "courses_id"
+  add_foreign_key "evaluation_instances", "courses"
   add_foreign_key "students", "courses"
 end

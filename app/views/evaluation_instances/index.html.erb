@@ -6,7 +6,8 @@
     <tr>
       <th>Title</th>
       <th>Date</th>
-      <th>Passing core</th>
+      <th>Passing score</th>
+      <th>Top score</th>
       <th scope="col" colspan="3" style="text-align:center;">Options</th>
     </tr>
 
@@ -14,7 +15,8 @@
     <tr>
       <td><%= evaluation_instance.title %></td>
       <td><%= evaluation_instance.date %></td>
-      <td><%= evaluation_instance.passing_core %></td>
+      <td><%= evaluation_instance.passing_score %></td>
+      <td><%= evaluation_instance.top_score %></td>
       <td><%= link_to 'Show', [evaluation_instance.course, evaluation_instance], :class => "btn btn-info" %></td>
       <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-success" %></td>
       <td><%= link_to 'Destroy', [evaluation_instance.course, evaluation_instance], :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-danger" %></td>

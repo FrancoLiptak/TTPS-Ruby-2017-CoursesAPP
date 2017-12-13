@@ -23,8 +23,12 @@
         <%= f.date_select :date, :class => "form-control" %>
       </div>
       <div class="form-group col-md-6">
-        <%= f.label :passing_core %><br />
-        <%= f.number_field :passing_core, :class => "form-control" %>
+        <%= f.label :passing_score %><br />
+        <%= f.number_field :passing_score, :class => "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :top_score %><br />
+        <%= f.number_field :top_score, :class => "form-control" %>
       </div>
       <div class="form-group col-md-12">
         <%= f.submit class: "btn btn-success" %>

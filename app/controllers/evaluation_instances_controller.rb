@@ -25,7 +25,7 @@ class EvaluationInstancesController < ApplicationController
     @evaluation_instance = @courses.evaluation_instances.build(evaluation_instance_params)
 
     if @evaluation_instance.save
-      redirect_to([@evaluation_instance.courses, @evaluation_instance], notice: 'Evaluation instance was successfully created.')
+      redirect_to([@evaluation_instance.course, @evaluation_instance], notice: 'Evaluation instance was successfully created.')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class EvaluationInstancesController < ApplicationController
   # PUT courses/1/evaluation_instances/1
   def update
     if @evaluation_instance.update_attributes(evaluation_instance_params)
-      redirect_to([@evaluation_instance.courses, @evaluation_instance], notice: 'Evaluation instance was successfully updated.')
+      redirect_to([@evaluation_instance.course, @evaluation_instance], notice: 'Evaluation instance was successfully updated.')
     else
       render action: 'edit'
     end
@@ -59,6 +59,6 @@ class EvaluationInstancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def evaluation_instance_params
-      params.require(:evaluation_instance).permit(:title, :date, :passing_core)
+      params.require(:evaluation_instance).permit(:title, :date, :passing_score, :top_score)
     end
 end
