@@ -9,16 +9,28 @@
   </head>
 
   <body>
+    <nav id="navbar-example2" class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+            <%= link_to 'Salir', destroy_user_session_path, method: :delete, :class => "btn btn-warning" %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+            <%= link_to 'Iniciar', new_user_session_path, :class => "btn btn-success" %>
+            </li>
+          <% end %>
+        </li>
+        
+      </ul>
+    </nav>
+
+
     <ul class="nav justify-content-end">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-        <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
-        </li>
-        <% else %>
-        <li class="nav-item">
-        <%= link_to 'Iniciar', new_user_session_path %>
-        </li>
-        <% end %>
+      
     </ul>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

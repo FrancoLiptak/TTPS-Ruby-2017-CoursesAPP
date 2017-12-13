@@ -44,7 +44,7 @@ class EvaluationInstancesController < ApplicationController
   def destroy
     @evaluation_instance.destroy
 
-    redirect_to courses_evaluation_instances_url(@courses)
+    redirect_to course_evaluation_instances_url(@courses)
   end
 
   private
