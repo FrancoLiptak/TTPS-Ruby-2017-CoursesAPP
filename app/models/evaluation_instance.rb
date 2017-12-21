@@ -3,8 +3,11 @@ class EvaluationInstance < ApplicationRecord
   has_many :scores
 
   validates_presence_of :date, :passing_score, :top_score
+  validates :title, :uniqueness => {:scope => [:course_id]}
+  validates :passing_score, numericality: { greater_than_or_equal_to: 0,
+                                            less_than_or_equal_to: :top_score,
+                                            message: "the passing score must be less than the top score" }
 
-  validates :title, presence: true, uniqueness: true
 
   def score_of_student student
     scores.where(student: student).first

@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th scope="col">Year</th>
-      <th scope="col" colspan="5" style="text-align:center;">Options</th>
+      <th scope="col" colspan="6" style="text-align:center;">Options</th>
     </tr>
   </thead>
 
@@ -19,6 +19,7 @@
           <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
           <td><%= link_to 'Students', course_students_url(course), :class => "btn btn-info" %> </td>
           <td><%= link_to 'Evaluation Instances', course_evaluation_instances_url(course), :class => "btn btn-info" %> </td>
+          <td><%= link_to 'Summary', summary_course_path(course), :class => "btn btn-info" %> </td>
         </tr>
       <% end %>
     </tbody>
