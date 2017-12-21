@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :course
+  has_many :scores
 
 
   validates_presence_of :last_name, :name, :dni, :student_number, :email
@@ -13,4 +14,5 @@ class Student < ApplicationRecord
   def summary
     "#{last_name} #{name} - #{student_number}"
   end
+
 end
