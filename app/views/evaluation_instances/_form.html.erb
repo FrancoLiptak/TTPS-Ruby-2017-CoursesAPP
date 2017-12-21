@@ -1,17 +1,16 @@
+<% if @evaluation_instance.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h4><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h4>
+    <ul>
+      <% @evaluation_instance.errors.full_messages.each do |msg| %>
+        <li class="font-italic"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container col-md-12 col-md-offset-6"> 
   <%= form_for([@evaluation_instance.course, @evaluation_instance]) do |f| %>
-    <% if @evaluation_instance.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h2>
-
-        <ul>
-        <% @evaluation_instance.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
   <form>
     <div class="form-row">
       <div class="form-group col-md-12">

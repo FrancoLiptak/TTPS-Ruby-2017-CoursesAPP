@@ -1,17 +1,16 @@
+<% if @score.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h4><%= pluralize(@score.errors.count, "error") %> prohibited this score from being saved:</h4>
+    <ul>
+      <% @score.errors.full_messages.each do |msg| %>
+        <li class="font-italic"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container col-md-12 col-md-offset-6"> 
   <%= form_for([@score.evaluation_instance, @score]) do |f| %>
-    <% if @score.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@score.errors.count, "error") %> prohibited this score from being saved:</h2>
-
-        <ul>
-        <% @score.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
   <form>
     <div class="form-row">
       <div class="form-group col-md-6">
