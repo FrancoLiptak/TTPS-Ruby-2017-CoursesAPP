@@ -11,7 +11,7 @@
 
   <% @scores.each do |score| %>
     <tr>
-      <td><%= score.student %></td>
+      <td><%= score.student.summary %></td>
       <td><%= score.score %></td>
       <td><%= link_to 'Show', [score.evaluation_instance, score], :class => "btn btn-info" %></td>
       <td><%= link_to 'Edit', edit_evaluation_instance_score_path(score.evaluation_instance, score), :class => "btn btn-success" %></td>

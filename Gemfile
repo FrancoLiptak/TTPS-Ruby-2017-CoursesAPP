@@ -18,7 +18,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'turbolinks', '~> 2.5', '>= 2.5.3'
 gem 'jquery-turbolinks'
-
 gem 'nested_scaffold'
 
 gem 'devise'

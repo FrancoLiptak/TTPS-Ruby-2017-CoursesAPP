@@ -4,7 +4,7 @@
   <div class="card">
       <h4 class="card-header bg-dark text-white">Showing Score
           <div class="float-right small">
-            <%= link_to 'Edit', edit_evaluation_instances_score_path(@score.evaluation_instances, @score), :class => "btn btn-success" %>
+            <%= link_to 'Edit', edit_evaluation_instance_score_path(@score.evaluation_instance, @score), :class => "btn btn-success" %>
           </div>
       </h4>
       <div class="card-body text-centered">
@@ -13,7 +13,7 @@
             <tbody>
                 <tr>
                     <td>Student:</td>
-                    <td> <%= @score.students %> </td>
+                    <td> <%= @score.student.summary %> </td>
                 </tr>
                 <tr>
                     <td>Score:</td>
@@ -26,5 +26,5 @@
   </div>
 
   <br>
-  <%= link_to 'Back', evaluation_instances_scores_path(@score.evaluation_instances), :class => "btn btn-secondary" %>
+  <%= link_to 'Back', evaluation_instance_scores_path(@score.evaluation_instance), :class => "btn btn-secondary" %>
 </div>

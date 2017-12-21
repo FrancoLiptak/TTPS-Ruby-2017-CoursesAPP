@@ -25,7 +25,7 @@ class ScoresController < ApplicationController
     @score = @evaluation_instances.scores.build(score_params)
 
     if @score.save
-      redirect_to([@score.evaluation_instances, @score], notice: 'Score was successfully created.')
+      redirect_to([@score.evaluation_instance, @score], notice: 'Score was successfully created.')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class ScoresController < ApplicationController
   # PUT evaluation_instances/1/scores/1
   def update
     if @score.update_attributes(score_params)
-      redirect_to([@score.evaluation_instances, @score], notice: 'Score was successfully updated.')
+      redirect_to([@score.evaluation_instance, @score], notice: 'Score was successfully updated.')
     else
       render action: 'edit'
     end
@@ -44,7 +44,7 @@ class ScoresController < ApplicationController
   def destroy
     @score.destroy
 
-    redirect_to evaluation_instances_scores_url(@evaluation_instances)
+    redirect_to evaluation_instance_scores_url(@evaluation_instances)
   end
 
   private
@@ -59,6 +59,6 @@ class ScoresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def score_params
-      params.require(:score).permit(:students_id, :score)
+      params.require(:score).permit(:student_id, :score)
     end
 end
