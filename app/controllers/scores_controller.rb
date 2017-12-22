@@ -1,5 +1,5 @@
 class ScoresController < ApplicationController
-  before_action :set_evaluation_instances
+  before_action :set_evaluation_instances, only: [:index, :update]
   before_action :upload, only: [:index]
 
   # GET evaluation_instances/1/scores
@@ -51,6 +51,6 @@ class ScoresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def score_params
-      params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id])
+      params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id evaluation_instance_id])
     end
 end

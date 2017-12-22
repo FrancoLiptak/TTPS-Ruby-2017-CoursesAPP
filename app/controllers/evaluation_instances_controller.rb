@@ -1,5 +1,5 @@
 class EvaluationInstancesController < ApplicationController
-  before_action :set_evaluation_instances
+  before_action :set_course
   before_action :set_evaluation_instance, only: [:show, :edit, :update, :destroy]
 
   # GET courses/1/evaluation_instances
@@ -53,7 +53,7 @@ class EvaluationInstancesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_evaluation_instances
+    def set_course
       @courses = Course.find(params[:course_id])
     end
 

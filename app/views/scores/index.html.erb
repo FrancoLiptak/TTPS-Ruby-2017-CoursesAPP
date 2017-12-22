@@ -1,31 +1,34 @@
 <div class="container col-md-8 col-md-offset-3">
   <h1>Listing scores</h1>
 
-  <%= simple_form_for @evaluation_instances, 
-                          url: course_evaluation_instance_upload_path(@evaluation_instances.course, @evaluation_instances), 
-                          method: :patch do |f| %>
-    <div class="table-responsive">
-      <table class="table text-center">
-        <thead>
-          <th>Student</th>
-          <th>Score</th>
-        </thead>
-        <tbody>
-            <%= f.fields_for :scores, @evaluation_instances.scores do |score| %>
-            <tr>
-              <td>
-                <%= score.object.student.summary %>
-              </td>
-              <td>
-                <%= score.input :score, label: false  %>
-                <%= score.hidden_field :student_id %>  
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <%= f.button :submit, "Upload", class: "btn btn-primary" %>
-    <%= link_to 'Back', course_evaluation_instances_path(@evaluation_instances), :class => "btn btn-secondary" %>
+  <% if !(@evaluation_instances.course.students.empty?) %>
+    <%= simple_form_for @evaluation_instances, 
+                            url: course_evaluation_instance_upload_path(@evaluation_instances.course, @evaluation_instances), 
+                            method: :patch do |f| %>
+      <div class="table-responsive">
+        <table class="table text-center">
+          <thead>
+            <th>Student</th>
+            <th>Score</th>
+          </thead>
+          <tbody>
+              <%= f.fields_for :scores, @evaluation_instances.scores do |score| %>
+              <tr>
+                <td>
+                  <%= score.object.student.summary %>
+                </td>
+                <td>
+                  <%= score.input :score, label: false  %>
+                  <%= score.hidden_field :student_id %>  
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= f.button :submit, "Upload", class: "btn btn-primary" %>
+    <% end %>
   <% end %>
+  <br>
+  <%= link_to 'Back', course_evaluation_instances_path(@evaluation_instances.course), :class => "btn btn-secondary" %>
 </div>
