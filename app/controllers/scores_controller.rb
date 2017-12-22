@@ -20,29 +20,16 @@ class ScoresController < ApplicationController
 
   # POST evaluation_instances/1/scores
   def create
-    @score = @evaluation_instances.scores.build(score_params)
-
-    if @score.save
-      redirect_to([@score.evaluation_instance, @score], notice: 'Score was successfully created.')
-    else
-      render action: 'new'
-    end
   end
 
   # PUT evaluation_instances/1/scores/1
   def update
-    if @evaluation_instances.update_attributes(score_params)
-      redirect_to course_evaluation_instance_scores_path(@evaluation_instances.course, @evaluation_instances), notice: 'Score was successfully updated.'
-    else
-      render action: 'index'
-    end
+    @evaluation_instances.update_attributes(score_params)
+    render action: 'index'
   end
 
   # DELETE evaluation_instances/1/scores/1
   def destroy
-    @score.destroy
-
-    redirect_to evaluation_instance_scores_url(@evaluation_instances)
   end
 
   private
@@ -51,6 +38,7 @@ class ScoresController < ApplicationController
     @evaluation_instances.course.students.each do |student|
       @evaluation_instances.scores.build(student: student)
     end
+    render action: 'index'
   end
 
     # Use callbacks to share common setup or constraints between actions.

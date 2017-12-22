@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   authenticated :users do
     root 'courses#index', as: :authenticated_root
   end
+
+  get 'courses/index'
   
 end

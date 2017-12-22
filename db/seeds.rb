@@ -37,9 +37,11 @@ end
                 )
 end
   
-EvaluationInstance.all.each do |instance|
-  10.times do
-    instance.scores.build(score: rand(0..100), evaluation_instance: instance, student: (instance.course.students).sample )
-    instance.save
+Course.all.each do |c|
+  c.evaluation_instances.each do |e|
+    c.students.each do |s|
+      e.scores.build(score: rand(0..100), evaluation_instance: e, student: s )
+      e.save
+    end
   end
 end
