@@ -22,7 +22,7 @@ Course.all.each do |course|
   end
 end
 
-10.times do |i|
+20.times do |i|
   offset = rand(Course.count)
   course = Course.offset(offset).first
   name = Faker::GameOfThrones.character

@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  evaluation_instances: one
-  students: one
-  score: 1
+  evaluation_instance: one
+  student: one
+  score: 80
 
 two:
-  evaluation_instances: two
-  students: two
+  evaluation_instance: one
+  student: two
   score: 1
+
+three:
+  evaluation_instance: two
+  student: two
+  score: 20

@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  courses: one
-  title: MyString
+  course: one
+  title: First test
   date: 2017-12-12
-  passing_core: 1
+  passing_score: 80
+  top_score: 100
 
 two:
-  courses: two
-  title: MyString
-  date: 2017-12-12
-  passing_core: 1
+  course: two
+  title: Second test
+  date: 2017-12-10
+  passing_score: 50
+  top_score: 100

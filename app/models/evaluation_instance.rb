@@ -2,7 +2,7 @@ class EvaluationInstance < ApplicationRecord
   belongs_to :course
   has_many :scores
 
-  validates_presence_of :date, :passing_score, :top_score
+  validates_presence_of :date, :passing_score, :top_score, :title
   validates :title, :uniqueness => {:scope => [:course_id]}
   validates :passing_score, numericality: { greater_than_or_equal_to: 0,
                                             less_than_or_equal_to: :top_score,

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  courses: one
-  last_name: MyString
-  name: MyString
-  dni: 1
-  student_number: MyString
-  email: MyString
+  course: one
+  last_name: Liptak
+  name: Franco
+  dni: 39432698
+  student_number: 12345/5
+  email: fran@gmail.com
 
 two:
-  courses: two
-  last_name: MyString
-  name: MyString
-  dni: 1
-  student_number: MyString
-  email: MyString
+  course: two
+  last_name: Pierobon
+  name: Matias
+  dni: 40654987
+  student_number: 12115/3
+  email: osito@gmail.com
