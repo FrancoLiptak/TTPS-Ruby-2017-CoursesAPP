@@ -1,24 +1,29 @@
-# README
+# TTPS-Ruby-2017 - Trabajo Integrador.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Preparación del ambiente
 
-Things you may want to cover:
+### Asegurarse de tener instalado:
+- Docker Compose
+- Ruby
+- PostreSQL
+- Docker Compose
+- Gema Bundler
+- Git
 
-* Ruby version
+### Pasos a seguir:
 
-* System dependencies
+1. Navegar en consola hasta la carpeta del proyecto.
+2. Clonar este repositorio.
+3. Ejecutar ` docker-compose build `.
+4. Levantar el proyecto usando ` docker-compose up -d `.
+5. Cargar la información a la base de datos usando ` docker-compose exec web rails db:setup `.
+6. Ingresar a ` localhost:3000 `.
+7. Acceder al sistema con email 'admin@admin.com' y contraseña: '123456'.
 
-* Configuration
+### Para correr los test:
 
-* Database creation
+1. Ejecutar ` docker-compose exec web rails test `.
 
-* Database initialization
+### Para finalizar:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Ejecutar ` docker-compose down `.
