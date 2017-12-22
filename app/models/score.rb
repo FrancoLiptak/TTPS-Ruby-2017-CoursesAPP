@@ -7,6 +7,7 @@ class Score < ApplicationRecord
   validates :score, numericality: { only_integer: true }, if: Proc.new{ |s| !(s.score.nil?)  }
   validate :range, if: Proc.new{ |s| !(s.score.nil?)  }
 
+  scope :has_score_for, ->(student, evaluation_instance) { where(student: student, evaluation_instance: evaluation_instance) }
 
   def to_s
     score
@@ -21,5 +22,4 @@ class Score < ApplicationRecord
   def approved?
     score.nil? ? false : score >= evaluation_instance.passing_score
   end
-
 end

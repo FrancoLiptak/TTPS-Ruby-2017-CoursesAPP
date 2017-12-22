@@ -36,7 +36,7 @@ class ScoresController < ApplicationController
 
   def upload
     @evaluation_instances.course.students.each do |student|
-      @evaluation_instances.scores.build(student: student)
+      @evaluation_instances.scores.build(student: student) unless student.you_already_have_score?(@evaluation_instances)
     end
     render action: 'index'
   end
