@@ -14,17 +14,16 @@ Course.create year: (Time.zone.today.year - 1)
 Course.all.each do |course|
   3.times do |i|
     EvaluationInstance.create(course: course,
-                              title: "Instance #{i + 1}", 
+                              title: "Instance #{i +1}", 
                               passing_score: rand(40..60), 
-                              top_score: rand(40..100),  
+                              top_score: rand(61..100),  
                               date: Time.at(rand((Time.new(course.year, 1, 1))..(Time.new(course.year, 12, 31))))
                               )
   end
 end
 
 20.times do |i|
-  offset = rand(Course.count)
-  course = Course.offset(offset).first
+  course = Course.all.sample
   name = Faker::GameOfThrones.character
   split_name = name.split(/\W+/)
   email = name.delete(' ') + '@gmail.com'
