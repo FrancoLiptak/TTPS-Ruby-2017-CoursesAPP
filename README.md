@@ -6,7 +6,6 @@
 - Docker Compose
 - Ruby
 - PostreSQL
-- Docker Compose
 - Gema Bundler
 - Git
 
