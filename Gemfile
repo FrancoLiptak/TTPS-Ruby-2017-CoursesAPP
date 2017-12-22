@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'turbolinks', '~> 2.5', '>= 2.5.3'
 gem 'jquery-turbolinks'
 gem 'nested_scaffold'
-
+gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
