@@ -1,10 +1,9 @@
 class ScoresController < ApplicationController
-  before_action :set_scores
-  before_action :set_score, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation_instances
+  before_action :upload, only: [:index]
 
   # GET evaluation_instances/1/scores
   def index
-    @scores = @evaluation_instances.scores
   end
 
   # GET evaluation_instances/1/scores/1
@@ -13,7 +12,6 @@ class ScoresController < ApplicationController
 
   # GET evaluation_instances/1/scores/new
   def new
-    @score = @evaluation_instances.scores.build
   end
 
   # GET evaluation_instances/1/scores/1/edit
@@ -33,10 +31,10 @@ class ScoresController < ApplicationController
 
   # PUT evaluation_instances/1/scores/1
   def update
-    if @score.update_attributes(score_params)
-      redirect_to([@score.evaluation_instance, @score], notice: 'Score was successfully updated.')
+    if @evaluation_instances.update_attributes(score_params)
+      redirect_to course_evaluation_instance_scores_path(@evaluation_instances.course, @evaluation_instances), notice: 'Score was successfully updated.'
     else
-      render action: 'edit'
+      render action: 'index'
     end
   end
 
@@ -48,17 +46,20 @@ class ScoresController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scores
-      @evaluation_instances = EvaluationInstance.find(params[:evaluation_instance_id])
-    end
 
-    def set_score
-      @score = @evaluation_instances.scores.find(params[:id])
+  def upload
+    @evaluation_instances.course.students.each do |student|
+      @evaluation_instances.scores.build(student: student)
+    end
+  end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_evaluation_instances
+      @evaluation_instances = EvaluationInstance.find(params[:evaluation_instance_id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def score_params
-      params.require(:score).permit(:student_id, :score)
+      params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id])
     end
 end

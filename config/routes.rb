@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-
-  resources :evaluation_instances do
-    resources :scores
-  end
   resources :courses do
     resources :evaluation_instances do
+      patch 'scores/edit', to: 'scores#update', as: 'upload'
       resources :scores
     end
     
