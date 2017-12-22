@@ -5,7 +5,7 @@
 ### Asegurarse de tener instalado:
 - Docker Compose
 - Ruby
-- PostreSQL
+- PostgreSQL
 - Gema Bundler
 - Git
 
