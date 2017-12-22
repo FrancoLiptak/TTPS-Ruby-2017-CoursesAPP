@@ -15,8 +15,8 @@ Course.all.each do |course|
   3.times do |i|
     EvaluationInstance.create(course: course,
                               title: "Instance #{i +1}", 
-                              passing_score: rand(40..60), 
-                              top_score: rand(61..100),  
+                              passing_score: rand(40...60), 
+                              top_score: rand(61...100),  
                               date: Time.at(rand((Time.new(course.year, 1, 1))..(Time.new(course.year, 12, 31))))
                               )
   end
@@ -38,9 +38,10 @@ end
   
 Course.all.each do |c|
   c.evaluation_instances.each do |e|
-    c.students.each do |s|
-      e.scores.build(score: rand(0..100), evaluation_instance: e, student: s )
+    c.students.shuffle.first(5).each do |s|
+      e.scores.build(score: rand(40..60).to_i, evaluation_instance: e, student: s )
       e.save
     end
   end
 end
+

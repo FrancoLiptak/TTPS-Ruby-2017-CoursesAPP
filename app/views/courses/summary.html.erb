@@ -1,12 +1,12 @@
-<div class="container col-md-6 col-md-offset-3">
+<div class="container col-md-8">
   <h1> Summary of the course <%= @course.year %> </h1>
-  <table class="table">
+  <table class="table table-responsive col-md-8">
     <thead>
         <tr>
             <th scope="col">Student</th>
             <% @evaluation_instances = @course.evaluation_instances %>
-            <% @evaluation_instances.each do | anInstance | %>
-                <th scope="col"><%= anInstance.title %></th>
+            <% @evaluation_instances.order('date').each do | anInstance | %>
+                <th scope="col"><%= anInstance.title %> <%= anInstance.date %></th>
             <% end %>
         </tr>
     </thead>
@@ -15,7 +15,7 @@
       <% @course.students.each do |student| %>
         <tr>
           <td><%= student.summary %></td>
-          <% @evaluation_instances.each do | anInstance | %>
+          <% @evaluation_instances.order('date').each do | anInstance | %>
             <% if anInstance.present_student? student  %>
                 <% score = anInstance.score_of_student student %>
                 <% if score.approved? %>
