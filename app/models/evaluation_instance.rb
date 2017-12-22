@@ -8,7 +8,7 @@ class EvaluationInstance < ApplicationRecord
                                             less_than_or_equal_to: :top_score,
                                             message: "the passing score must be less than the top score" }
 
-  accepts_nested_attributes_for :scores, reject_if: Proc.new{ |a| a['score'].blank? }
+  accepts_nested_attributes_for :scores
 
 
   def score_of_student student

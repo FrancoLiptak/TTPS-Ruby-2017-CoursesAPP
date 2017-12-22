@@ -24,8 +24,11 @@ class ScoresController < ApplicationController
 
   # PUT evaluation_instances/1/scores/1
   def update
-    @evaluation_instances.update_attributes(score_params)
-    render action: 'index'
+    if @evaluation_instances.update_attributes(score_params)
+      render action: 'index', notice: 'Score was successfully updated.'
+    else 
+      render action: 'index', notice: 'An error has occurred.'
+    end
   end
 
   # DELETE evaluation_instances/1/scores/1
