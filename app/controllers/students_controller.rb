@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
   # PUT courses/1/students/1
   def update
     if @student.update_attributes(student_params)
-      redirect_to([@student.course, @student], notice: 'Student was successfully updated.')
+      redirect_to course_students_url, notice: 'Student was successfully updated.'
     else
       render action: 'edit'
     end

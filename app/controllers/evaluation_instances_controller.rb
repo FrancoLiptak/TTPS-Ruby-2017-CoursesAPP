@@ -30,7 +30,7 @@ class EvaluationInstancesController < ApplicationController
   # PUT courses/1/evaluation_instances/1
   def update
     if @evaluation_instance.update_attributes(evaluation_instance_params)
-      redirect_to([@evaluation_instance.course, @evaluation_instance], notice: 'Evaluation instance was successfully updated.')
+      redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully updated.'
     else
       render action: 'edit'
     end

@@ -1,1 +1,0 @@
-json.partial! "courses_evaluation_instances/courses_evaluation_instance", courses_evaluation_instance: @courses_evaluation_instance

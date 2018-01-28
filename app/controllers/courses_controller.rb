@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1.json
   def update
       if @course.update(course_params)
-        redirect_to @course, notice: 'Course was successfully updated.'
+        redirect_to courses_url, notice: 'Course was successfully updated.'
       else
         render action: 'edit'
       end
