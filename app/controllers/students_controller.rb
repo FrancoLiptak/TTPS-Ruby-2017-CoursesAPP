@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
   # DELETE courses/1/students/1
   def destroy
     if (!@student.scores.empty?)
-      redirect_to([@student.course, @student], alert: 'This student can not be deleted. It has associated results.' )
+      redirect_to course_students_url, alert: 'This student can not be deleted. It has associated results.'
     else
       @student.destroy
       redirect_to course_students_url(@courses)

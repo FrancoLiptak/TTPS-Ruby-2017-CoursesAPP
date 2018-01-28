@@ -11,15 +11,13 @@ gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'turbolinks', '~> 2.5', '>= 2.5.3'
 gem 'jquery-turbolinks'
 gem 'nested_scaffold'
-gem 'faker', '~> 1.6', '>= 1.6.6'
+gem 'faker', '~> 1.6', '>= 1.6.6' # Usada para generar los nombres de alumnos truchos.
 gem 'simple_form', '~> 3.5'
 gem 'devise'
 # Use Capistrano for deployment

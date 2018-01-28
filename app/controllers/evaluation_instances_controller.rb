@@ -39,7 +39,7 @@ class EvaluationInstancesController < ApplicationController
   # DELETE courses/1/evaluation_instances/1
   def destroy
     if (!@evaluation_instance.scores.empty?)
-      redirect_to([@evaluation_instance.course, @evaluation_instance], alert: 'This evaluation instance can not be deleted. It has associated results.')
+      redirect_to course_evaluation_instances_url, alert: 'This evaluation instance can not be deleted. It has associated results.'
     else
       @evaluation_instance.destroy
       redirect_to course_evaluation_instances_url(@courses)
