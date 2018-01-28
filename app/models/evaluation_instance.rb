@@ -33,9 +33,9 @@ class EvaluationInstance < ApplicationRecord
 
   def percentage_of_approved
     if scores.all.to_a.size == 0
-      p "Without results"
+      "Without results"
     else
-      p "#{( number_of_approved.to_f / scores.all.to_a.size ) * 100}%"
+      "#{( number_of_approved.to_f / scores.all.to_a.size ) * 100}%"
     end
   end
 end

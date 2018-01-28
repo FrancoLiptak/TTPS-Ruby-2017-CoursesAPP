@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
     if @course.save
       redirect_to courses_url, notice: 'Course was successfully created.'
-    else                                                                  # PROBAR LOS ELSE
+    else
       render action: 'new'
     end
   end

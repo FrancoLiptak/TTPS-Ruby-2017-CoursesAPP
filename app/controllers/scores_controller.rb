@@ -6,22 +6,6 @@ class ScoresController < ApplicationController
   def index
   end
 
-  # GET evaluation_instances/1/scores/1
-  def show
-  end
-
-  # GET evaluation_instances/1/scores/new
-  def new
-  end
-
-  # GET evaluation_instances/1/scores/1/edit
-  def edit
-  end
-
-  # POST evaluation_instances/1/scores
-  def create
-  end
-
   # PUT evaluation_instances/1/scores/1
   def update
     if @evaluation_instances.update_attributes(score_params)
