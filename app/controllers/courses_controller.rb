@@ -31,11 +31,11 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-      if @course.update(course_params)
-        redirect_to courses_url, notice: 'Course was successfully updated.'
-      else
-        render action: 'edit'
-      end
+    if @course.update(course_params)
+      redirect_to courses_url, notice: 'Course was successfully updated.'
+    else
+      render action: 'edit'
+    end
   end
 
   # DELETE /courses/1
