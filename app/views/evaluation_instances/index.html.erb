@@ -7,7 +7,7 @@
       <th>Date</th>
       <th>Passing score</th>
       <th>Top score</th>
-      <th scope="col" colspan="4" style="text-align:center;">Options</th>
+      <th scope="col" colspan="3" style="text-align:center;">Options</th>
     </tr>
 
   <% @evaluation_instances.each do |evaluation_instance| %>
@@ -16,7 +16,6 @@
       <td style="white-space: nowrap;"><%= evaluation_instance.date %></td>
       <td><%= evaluation_instance.passing_score %></td>
       <td><%= evaluation_instance.top_score %></td>
-      <td><%= link_to 'Show', [evaluation_instance.course, evaluation_instance], :class => "btn btn-info" %></td>
       <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-success" %></td>
       <td><%= link_to 'Destroy', [evaluation_instance.course, evaluation_instance], :method => :delete, data: { :confirm => 'Are you sure?' },  :class => "btn btn-danger" %></td>
       <td><%= link_to 'Scores', course_evaluation_instance_scores_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-info" %></td>

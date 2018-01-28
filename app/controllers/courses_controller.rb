@@ -7,11 +7,6 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
-  def show
-  end
-
   # GET /courses/new
   def new
     @course = Course.new
@@ -26,45 +21,31 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.save
+      redirect_to courses_url, notice: 'Course was successfully created.'
+    else                                                                  # PROBAR LOS ELSE
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-    respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        redirect_to @course, notice: 'Course was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        render action: 'edit'
       end
-    end
   end
 
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
     if (!@course.students.empty? || !@course.evaluation_instances.empty?)
-      respond_to do |format|
-        format.html { redirect_to courses_url, alert: 'This course can not be eliminated. It has associated information' }
-        format.json { head :no_content }
-      end
+      redirect_to courses_url, alert: 'This course can not be eliminated. It has associated information'
     else
       @course.destroy
-      respond_to do |format|
-        format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to courses_url, notice: 'Course was successfully destroyed.'
     end
   end
 

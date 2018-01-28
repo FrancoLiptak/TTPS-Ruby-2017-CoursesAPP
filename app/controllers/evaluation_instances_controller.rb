@@ -7,10 +7,6 @@ class EvaluationInstancesController < ApplicationController
     @evaluation_instances = @courses.evaluation_instances
   end
 
-  # GET courses/1/evaluation_instances/1
-  def show
-  end
-
   # GET courses/1/evaluation_instances/new
   def new
     @evaluation_instance = @courses.evaluation_instances.build
@@ -25,7 +21,7 @@ class EvaluationInstancesController < ApplicationController
     @evaluation_instance = @courses.evaluation_instances.build(evaluation_instance_params)
 
     if @evaluation_instance.save
-      redirect_to([@evaluation_instance.course, @evaluation_instance], notice: 'Evaluation instance was successfully created.')
+      redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully created.'
     else
       render action: 'new'
     end
@@ -46,7 +42,6 @@ class EvaluationInstancesController < ApplicationController
       redirect_to([@evaluation_instance.course, @evaluation_instance], alert: 'This evaluation instance can not be deleted. It has associated results.')
     else
       @evaluation_instance.destroy
-
       redirect_to course_evaluation_instances_url(@courses)
     end
   end

@@ -7,10 +7,6 @@ class StudentsController < ApplicationController
     @students = @courses.students
   end
 
-  # GET courses/1/students/1
-  def show
-  end
-
   # GET courses/1/students/new
   def new
     @student = @courses.students.build
@@ -25,7 +21,7 @@ class StudentsController < ApplicationController
     @student = @courses.students.build(student_params)
 
     if @student.save
-      redirect_to([@student.course, @student], notice: 'Student was successfully created.')
+      redirect_to course_students_url, notice: 'Student was successfully created.'
     else
       render action: 'new'
     end
