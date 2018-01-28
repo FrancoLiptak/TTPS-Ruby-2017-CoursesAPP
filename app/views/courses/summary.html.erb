@@ -33,25 +33,25 @@
     <tfoot class="table-striped table-dark">
         <tr>
             <td> Approved students </td>
-            <% @evaluation_instances.each do | anInstance | %>
+            <% @evaluation_instances.order('date').each do | anInstance | %>
                 <td><%= anInstance.number_of_approved %></td>
             <% end %>
         </tr>
         <tr>
             <td> Disapproved students </td>
-            <% @evaluation_instances.each do | anInstance | %>
+            <% @evaluation_instances.order('date').each do | anInstance | %>
                 <td><%= anInstance.number_of_disapproved %></td>
             <% end %>
         </tr>
         <tr>
             <td> Absent students </td>
-            <% @evaluation_instances.each do | anInstance | %>
+            <% @evaluation_instances.order('date').each do | anInstance | %>
                 <td><%= anInstance.number_of_absentees %></td>
             <% end %>
         </tr>
         <tr>
         <td> Percentage of approved </td>
-            <% @evaluation_instances.each do | anInstance | %>
+            <% @evaluation_instances.order('date').each do | anInstance | %>
                 <td><%= anInstance.percentage_of_approved %></td>
             <% end %>
         </tr>

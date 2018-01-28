@@ -18,8 +18,21 @@
                   <%= score.object.student.summary %>
                 </td>
                 <td>
-                  <%= score.input :score, label: false  %>
-                  <%= score.hidden_field :student_id %>  
+                  <%= score.input :score, label: false, :error => false  %>
+
+                  <br>
+                  <% if score.object.errors.any? %>
+                    <div id="error_explanation" class="alert alert-danger">
+                      <h6><%= pluralize(score.object.errors.count, "error") %> prohibited this student from being saved:</h6>
+                      <ul>
+                        <% score.object.errors.full_messages.each do |msg| %>
+                          <li class="font-italic"><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
+                  <%= score.hidden_field :student_id %>
                 </td>
               </tr>
             <% end %>

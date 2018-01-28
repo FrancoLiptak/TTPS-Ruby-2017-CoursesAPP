@@ -42,7 +42,7 @@ class EvaluationInstancesController < ApplicationController
       redirect_to course_evaluation_instances_url, alert: 'This evaluation instance can not be deleted. It has associated results.'
     else
       @evaluation_instance.destroy
-      redirect_to course_evaluation_instances_url(@courses)
+      redirect_to course_evaluation_instances_url(@courses), notice: 'The evaluation instance was successfully deleted.'
     end
   end
 

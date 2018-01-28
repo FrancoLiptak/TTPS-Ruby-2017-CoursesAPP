@@ -4,7 +4,7 @@ class Score < ApplicationRecord
 
   validates_presence_of :student_id, :evaluation_instance_id
 
-  validates :score, numericality: { only_integer: true }, if: Proc.new{ |s| !(s.score.nil?)  }
+  validates :score, presence: true, numericality: { only_integer: true }, if: Proc.new{ |s| !(s.score.nil?)  }
   validate :range, if: Proc.new{ |s| !(s.score.nil?)  }
 
   scope :has_score_for, ->(student, evaluation_instance) { where(student: student, evaluation_instance: evaluation_instance) }
