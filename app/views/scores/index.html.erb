@@ -12,27 +12,27 @@
             <th>Score</th>
           </thead>
           <tbody>
-              <%= f.fields_for :scores, @evaluation_instances.scores do |score| %>
+              <%= f.fields_for :scores, @evaluation_instances.scores do |s| %>
               <tr>
                 <td>
-                  <%= score.object.student.summary %>
+                  <%= s.object.student.summary %>
                 </td>
                 <td>
-                  <%= score.input :score, label: false, :error => false  %>
+                  <%= s.number_field :score, class: 'form-control', label: false, :error => false %>
+                  <%= s.hidden_field :student_id %>
 
                   <br>
-                  <% if score.object.errors.any? %>
+                  <% if s.object.errors.any? %>
                     <div id="error_explanation" class="alert alert-danger">
-                      <h6><%= pluralize(score.object.errors.count, "error") %> prohibited this student from being saved:</h6>
+                      <h6><%= pluralize(s.object.errors.count, "error") %> prohibited this student from being saved:</h6>
                       <ul>
-                        <% score.object.errors.full_messages.each do |msg| %>
+                        <% s.object.errors.full_messages.each do |msg| %>
                           <li class="font-italic"><%= msg %></li>
                         <% end %>
                       </ul>
                     </div>
                   <% end %>
 
-                  <%= score.hidden_field :student_id %>
                 </td>
               </tr>
             <% end %>

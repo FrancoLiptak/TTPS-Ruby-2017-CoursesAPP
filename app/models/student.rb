@@ -11,6 +11,8 @@ class Student < ApplicationRecord
   validates :dni, :uniqueness => { :scope => [:course_id], message: "the DNI must be unique within the same course" }, numericality: { only_integer: true, greater_than: 0 }
   validates :student_number, :uniqueness => { :scope => [:course_id], message: "the student number must be unique within the same course" }
 
+  accepts_nested_attributes_for :scores, reject_if: proc { |s| s['score'].blank? }
+
   def summary
     "#{last_name} #{name} - #{student_number}"
   end
