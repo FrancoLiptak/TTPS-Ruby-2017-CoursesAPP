@@ -1,11 +1,14 @@
 <div class="container col-lg-8">
   <div class="card mb-3 table-responsive">
-    <img class="card-img-top" src="https://i.imgur.com/jh3UkC0.jpg" alt="Card image cap">
+    <%= image_tag("portada-2.jpeg", class: "card-img-top img-fluid") %>
     <div class="card-block">
-      <div class="card-header">Listing evaluation instances</div>
+      <div class="card-header">
+        Listing evaluation instances
+        <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-sm float-right' %>  
+      </div>
         <div class="card-body">
 
-          <table class="table table-hover table-bordered">
+          <table class="table table-hover table-bordered text-center">
             <thead>
               <tr>
                 <th>Title</th>
@@ -30,9 +33,7 @@
           </table>
 
           <br>
-
           <%= link_to 'New Evaluation instance', new_course_evaluation_instance_path(params[:course_id]), :class => "btn btn-primary" %>
-          <%= link_to 'Back', courses_path, class: 'btn btn-secondary' %>
         </div>
       </div>
     </div>

@@ -1,15 +1,18 @@
 <div class="container col-lg-8">
   <div class="card mb-3 table-responsive">
-    <img class="card-img-top" src="https://i.imgur.com/hu60s0B.jpg" alt="Card image cap">
+    <%= image_tag("portada-1.jpeg", class: "card-img-top img-fluid") %>
     <div class="card-block">
-      <div class="card-header">Listing scores</div>
+      <div class="card-header">
+        Listing scores
+        <%= link_to 'Back', course_evaluation_instances_path(@evaluation_instances.course), :class => "btn btn-secondary btn-sm float-right" %>  
+      </div>
         <div class="card-body">
 
           <% if !(@evaluation_instances.course.students.empty?) %>
             <%= simple_form_for @evaluation_instances, 
                                     url: course_evaluation_instance_upload_path(@evaluation_instances.course, @evaluation_instances), 
                                     method: :patch do |f| %>
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered text-center">
                   <thead>
                     <th>Student</th>
                     <th>Score</th>
@@ -44,8 +47,6 @@
               <%= f.button :submit, "Upload", class: "btn btn-primary" %>
             <% end %>
           <% end %>
-          <br>
-          <%= link_to 'Back', course_evaluation_instances_path(@evaluation_instances.course), :class => "btn btn-secondary" %>
         </div>
       </div>
     </div>
