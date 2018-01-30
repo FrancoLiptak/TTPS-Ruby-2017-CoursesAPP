@@ -1,64 +1,77 @@
-<div class="container col-md-8">
-  <h1> Summary of the course <%= @course.year %> </h1>
-  <table class="table table-responsive col-md-8">
-    <thead>
-        <tr>
-            <th scope="col">Student</th>
+<div class="container col-lg-8">
+  <div class="card mb-3 table-responsive">
+    <%= image_tag("portada-5.jpeg", class: "card-img-top img-fluid") %>
+    <div class="card-block">
+      <div class="card-header">
+        Summary of the course <%= @course.year %>
+        <%= link_to 'Back', courses_path, :class => "btn btn-secondary btn-sm float-right" %>  
+      </div>
+        <div class="card-body">
             <% @evaluation_instances = @course.evaluation_instances %>
-            <% @evaluation_instances.order('date').each do | anInstance | %>
-                <th scope="col"><%= anInstance.title %> <%= anInstance.date %></th>
-            <% end %>
-        </tr>
-    </thead>
+            <% if !(@course.students.empty?) && !(@evaluation_instances.empty?) %>
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Student</th>
+                            <% @evaluation_instances.order('date').each do | anInstance | %>
+                                <th scope="col"><%= anInstance.title %> <%= anInstance.date %></th>
+                            <% end %>
+                        </tr>
+                    </thead>
 
-    <tbody>
-      <% @course.students.each do |student| %>
-        <tr>
-          <td><%= student.summary %></td>
-          <% @evaluation_instances.order('date').each do | anInstance | %>
-            <% if anInstance.present_student? student  %>
-                <% score = anInstance.score_of_student student %>
-                <% if score.approved? %>
-                    <td class="table-success"> Approved (<%= score.to_s %>) </td>
-                <% else %>
-                    <td class="table-danger"> Disapproved (<%= score.to_s %>) </td>
-                <% end %>
+                    <tbody>
+                    <% @course.students.each do |student| %>
+                        <tr>
+                        <td><%= student.summary %></td>
+                        <% @evaluation_instances.order('date').each do | anInstance | %>
+                            <% if anInstance.present_student? student  %>
+                                <% score = anInstance.score_of_student student %>
+                                <% if score.approved? %>
+                                    <td class="table-success"> Approved (<%= score.to_s %>) </td>
+                                <% else %>
+                                    <td class="table-danger"> Disapproved (<%= score.to_s %>) </td>
+                                <% end %>
+                            <% else %>
+                                <td class="table-warning"> Absent </td>
+                            <% end %>
+                        <% end %>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                    <tfoot class="table-striped table-dark">
+                        <tr>
+                            <td> Approved students </td>
+                            <% @evaluation_instances.order('date').each do | anInstance | %>
+                                <td><%= anInstance.number_of_approved %></td>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td> Disapproved students </td>
+                            <% @evaluation_instances.order('date').each do | anInstance | %>
+                                <td><%= anInstance.number_of_disapproved %></td>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td> Absent students </td>
+                            <% @evaluation_instances.order('date').each do | anInstance | %>
+                                <td><%= anInstance.number_of_absentees %></td>
+                            <% end %>
+                        </tr>
+                        <tr>
+                        <td> Percentage of approved </td>
+                            <% @evaluation_instances.order('date').each do | anInstance | %>
+                                <td><%= anInstance.percentage_of_approved %></td>
+                            <% end %>
+                        </tr>
+                    </tfoot>
+                </table>
             <% else %>
-                <td class="table-warning"> Absent </td>
+                <div class="alert alert-danger" role="alert">
+                  <h4 class="alert-heading">¡ Ups !</h4>
+                  <p>It seems that there is still no data in this course.</p>
+                </div>
             <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-    <tfoot class="table-striped table-dark">
-        <tr>
-            <td> Approved students </td>
-            <% @evaluation_instances.order('date').each do | anInstance | %>
-                <td><%= anInstance.number_of_approved %></td>
-            <% end %>
-        </tr>
-        <tr>
-            <td> Disapproved students </td>
-            <% @evaluation_instances.order('date').each do | anInstance | %>
-                <td><%= anInstance.number_of_disapproved %></td>
-            <% end %>
-        </tr>
-        <tr>
-            <td> Absent students </td>
-            <% @evaluation_instances.order('date').each do | anInstance | %>
-                <td><%= anInstance.number_of_absentees %></td>
-            <% end %>
-        </tr>
-        <tr>
-        <td> Percentage of approved </td>
-            <% @evaluation_instances.order('date').each do | anInstance | %>
-                <td><%= anInstance.percentage_of_approved %></td>
-            <% end %>
-        </tr>
-    </tfoot>
-
-  </table>
-  
-  <br>      
-  <%= link_to 'Back', courses_path, class: 'btn btn-secondary' %>
+            </div>
+        </div>
+    </div>
 </div>

@@ -11,34 +11,40 @@
         <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-sm float-right' %>  
       </div>
         <div class="card-body">
+          <% if !(@evaluation_instances.empty?) %>
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Date</th>
+                  <th>Passing score</th>
+                  <th>Top score</th>
+                  <th scope="col" colspan="3" style="text-align:center;">Options</th>
+                </tr>
+              </thead>
 
-          <table class="table table-hover text-center">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Passing score</th>
-                <th>Top score</th>
-                <th scope="col" colspan="3" style="text-align:center;">Options</th>
-              </tr>
-            </thead>
-
-            <% @evaluation_instances.each do |evaluation_instance| %>
-              <tr>
-                <td style="white-space: nowrap;"><%= evaluation_instance.title %></td>
-                <td style="white-space: nowrap;"><%= evaluation_instance.date %></td>
-                <td><%= evaluation_instance.passing_score %></td>
-                <td><%= evaluation_instance.top_score %></td>
-                <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :remote => true, :class => "btn btn-success" %></td>
-                <td>
-                  <button data-id="<%= evaluation_instance.id %>" data-slice="32" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
-                    <%= 'Delete' %>
-                  </button>
-                </td>
-                <td><%= link_to 'Scores', course_evaluation_instance_scores_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-info" %></td>
-              </tr>
-            <% end %>
-          </table>
+              <% @evaluation_instances.each do |evaluation_instance| %>
+                <tr>
+                  <td style="white-space: nowrap;"><%= evaluation_instance.title %></td>
+                  <td style="white-space: nowrap;"><%= evaluation_instance.date %></td>
+                  <td><%= evaluation_instance.passing_score %></td>
+                  <td><%= evaluation_instance.top_score %></td>
+                  <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :remote => true, :class => "btn btn-success" %></td>
+                  <td>
+                    <button data-id="<%= evaluation_instance.id %>" data-slice="32" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
+                      <%= 'Delete' %>
+                    </button>
+                  </td>
+                  <td><%= link_to 'Scores', course_evaluation_instance_scores_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-info" %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">¡ Ups !</h4>
+              <p>It seems that there is still no data from any evaluation instance in this course.</p>
+            </div>
+          <% end %>
 
           <br>
           <%= link_to 'New Evaluation instance', new_course_evaluation_instance_path(params[:course_id]), :remote => true, :class => "btn btn-primary" %>

@@ -11,35 +11,41 @@
         <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-sm float-right' %>  
       </div>
         <div class="card-body">
+          <% if !(@students.empty?) %>
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th>Last name</th>
+                  <th>Name</th>
+                  <th>Dni</th>
+                  <th>Student number</th>
+                  <th>Email</th>
+                  <th scope="col" colspan="2" style="text-align:center;">Options</th>
+                </tr>
+              </thead>
 
-          <table class="table table-hover text-center">
-            <thead>
-              <tr>
-                <th>Last name</th>
-                <th>Name</th>
-                <th>Dni</th>
-                <th>Student number</th>
-                <th>Email</th>
-                <th scope="col" colspan="2" style="text-align:center;">Options</th>
-              </tr>
-            </thead>
-
-            <% @students.each do |student| %>
-              <tr>
-                <td><%= student.last_name %></td>
-                <td><%= student.name %></td>
-                <td><%= student.dni %></td>
-                <td><%= student.student_number %></td>
-                <td><%= student.email %></td>
-                <td><%= link_to 'Edit', edit_course_student_path(student.course, student), :remote => true, :class => "btn btn-success" %></td>
-                <td>
-                  <button data-id="<%= student.id %>" data-slice="20" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
-                    <%= 'Delete' %>
-                  </button>
-                </td>
-              </tr>
-            <% end %>
-          </table>
+              <% @students.each do |student| %>
+                <tr>
+                  <td><%= student.last_name %></td>
+                  <td><%= student.name %></td>
+                  <td><%= student.dni %></td>
+                  <td><%= student.student_number %></td>
+                  <td><%= student.email %></td>
+                  <td><%= link_to 'Edit', edit_course_student_path(student.course, student), :remote => true, :class => "btn btn-success" %></td>
+                  <td>
+                    <button data-id="<%= student.id %>" data-slice="20" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
+                      <%= 'Delete' %>
+                    </button>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">¡ Ups !</h4>
+              <p>It seems that there is still no data from any student in this course</p>
+            </div>
+          <% end %>
 
           <br>
           <%= link_to 'New Student', new_course_student_path(params[:course_id]), :remote => true, :class => "btn btn-primary" %>

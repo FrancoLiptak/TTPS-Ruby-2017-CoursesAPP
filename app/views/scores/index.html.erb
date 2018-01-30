@@ -46,6 +46,11 @@
                 </table>
               <%= f.button :submit, "Upload", class: "btn btn-primary" %>
             <% end %>
+          <% else %>
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">¡ Ups !</h4>
+              <p>It seems that there is still no data in this course.</p>
+            </div>
           <% end %>
         </div>
       </div>
