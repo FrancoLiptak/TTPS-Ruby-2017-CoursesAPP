@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to courses_url, notice: 'Course was successfully created.'
     else
-      render action: 'new'
+      redirect_to courses_url, alert: 'There was a problem (remember that the year must be unique). Please try again.'
     end
   end
 
@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       redirect_to courses_url, notice: 'Course was successfully updated.'
     else
-      render action: 'edit'
+      redirect_to courses_url, alert: 'There was a problem (remember that the year must be unique). Please try again.'
     end
   end
 

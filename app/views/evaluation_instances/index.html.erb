@@ -1,3 +1,7 @@
+<% content_for :modal do %>
+  <%= render partial: 'layouts/modal', locals: { route_path: course_evaluation_instance_path(@courses, 0) } %> 
+<% end %>
+
 <div class="container col-lg-8">
   <div class="card mb-3 table-responsive">
     <%= image_tag("portada-2.jpeg", class: "card-img-top img-fluid") %>
@@ -8,7 +12,7 @@
       </div>
         <div class="card-body">
 
-          <table class="table table-hover table-bordered text-center">
+          <table class="table table-hover text-center">
             <thead>
               <tr>
                 <th>Title</th>
@@ -25,17 +29,23 @@
                 <td style="white-space: nowrap;"><%= evaluation_instance.date %></td>
                 <td><%= evaluation_instance.passing_score %></td>
                 <td><%= evaluation_instance.top_score %></td>
-                <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-success" %></td>
-                <td><%= link_to 'Destroy', [evaluation_instance.course, evaluation_instance], :method => :delete, data: { :confirm => 'Are you sure?' },  :class => "btn btn-danger" %></td>
+                <td><%= link_to 'Edit', edit_course_evaluation_instance_path(evaluation_instance.course, evaluation_instance), :remote => true, :class => "btn btn-success" %></td>
+                <td>
+                  <button data-id="<%= evaluation_instance.id %>" data-slice="32" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
+                    <%= 'Delete' %>
+                  </button>
+                </td>
                 <td><%= link_to 'Scores', course_evaluation_instance_scores_path(evaluation_instance.course, evaluation_instance), :class => "btn btn-info" %></td>
               </tr>
             <% end %>
           </table>
 
           <br>
-          <%= link_to 'New Evaluation instance', new_course_evaluation_instance_path(params[:course_id]), :class => "btn btn-primary" %>
+          <%= link_to 'New Evaluation instance', new_course_evaluation_instance_path(params[:course_id]), :remote => true, :class => "btn btn-primary" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div id="modal" style="display:none;"></div>

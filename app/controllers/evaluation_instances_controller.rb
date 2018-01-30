@@ -23,7 +23,7 @@ class EvaluationInstancesController < ApplicationController
     if @evaluation_instance.save
       redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully created.'
     else
-      render action: 'new'
+      redirect_to course_evaluation_instances_url, alert: 'There was a problem (remember that the title must be unique, and the passing score must be less than the maximum score). Please try again.'
     end
   end
 
@@ -32,7 +32,7 @@ class EvaluationInstancesController < ApplicationController
     if @evaluation_instance.update_attributes(evaluation_instance_params)
       redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully updated.'
     else
-      render action: 'edit'
+      redirect_to course_evaluation_instances_url, alert: 'There was a problem (remember that the title must be unique, and the passing score must be less than the maximum score). Please try again.'
     end
   end
 
@@ -42,7 +42,7 @@ class EvaluationInstancesController < ApplicationController
       redirect_to course_evaluation_instances_url, alert: 'This evaluation instance can not be deleted. It has associated results.'
     else
       @evaluation_instance.destroy
-      redirect_to course_evaluation_instances_url(@courses), notice: 'The evaluation instance was successfully deleted.'
+      redirect_to course_evaluation_instances_url, notice: 'The evaluation instance was successfully deleted.'
     end
   end
 

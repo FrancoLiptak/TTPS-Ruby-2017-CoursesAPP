@@ -19,3 +19,20 @@
 
 //= require_tree .
 
+// Delete confirmation modals
+
+$(document).ready(() => {
+  
+    $('[data-toggle="tooltip"]').tooltip()
+    
+    $(".btn-delete").click(function(e) {
+      e.preventDefault()
+      $btn = $("#delete-confirm").find(".btn-danger")
+      $href = $btn.attr("href")
+      $slice = $(this).data("slice")
+      console.log($(this).data("id"))
+      $new = $href.replace($href.slice($slice), $(this).data("id"))
+      $btn.attr("href", $new)
+      $("#delete-confirm").modal("show")
+    })
+  })

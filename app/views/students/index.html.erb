@@ -1,3 +1,7 @@
+<% content_for :modal do %>
+  <%= render partial: 'layouts/modal', locals: { route_path: course_student_path(@courses, 0) } %>
+<% end %>
+
 <div class="container col-lg-8">
   <div class="card mb-3 table-responsive">
     <%= image_tag("portada-4.jpeg", class: "card-img-top img-fluid") %>
@@ -8,7 +12,7 @@
       </div>
         <div class="card-body">
 
-          <table class="table table-hover table-bordered text-center">
+          <table class="table table-hover text-center">
             <thead>
               <tr>
                 <th>Last name</th>
@@ -27,16 +31,24 @@
                 <td><%= student.dni %></td>
                 <td><%= student.student_number %></td>
                 <td><%= student.email %></td>
-                <td><%= link_to 'Edit', edit_course_student_path(student.course, student), :class => "btn btn-success" %></td>
-                <td><%= link_to 'Destroy', [student.course, student], :method => :delete, data: { :confirm => 'Are you sure?' }, :class => "btn btn-danger" %></td>
+                <td><%= link_to 'Edit', edit_course_student_path(student.course, student), :remote => true, :class => "btn btn-success" %></td>
+                <td>
+                  <button data-id="<%= student.id %>" data-slice="20" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
+                    <%= 'Delete' %>
+                  </button>
+                </td>
               </tr>
             <% end %>
           </table>
 
           <br>
-          <%= link_to 'New Student', new_course_student_path(params[:course_id]), :class => "btn btn-primary" %>
+          <%= link_to 'New Student', new_course_student_path(params[:course_id]), :remote => true, :class => "btn btn-primary" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<div id="newStudent" style="display:none;"></div>
+<div id="editStudent" style="display:none;"></div>
