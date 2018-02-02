@@ -59,23 +59,22 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
     assert (instance.present_student? students(:two))
   end 
 
-  test "must know the percentage of approved students" do
-    evaluation = courses(:one).evaluation_instances.build(course: courses(:one), title: "test", date: 2017-12-1, passing_score: 5, top_score: 10)
-    assert_equal(0, evaluation.percentage_of_approved )
-    evaluation.scores.build(student: students(:one), score: 1)
-    
-    assert_equal(1, evaluation.scores.all)
-  end 
-
   test "must know the number of absent students" do 
-    evaluation = evaluation_instances(:two)
+    evaluation = courses(:one).evaluation_instances.build(course: courses(:one), title: "test", date: 2017-12-1, passing_score: 5, top_score: 10)
     assert_equal(1, evaluation.number_of_absentees)
   end
+
+  test "must know the percentage of approved students" do
+    evaluation = courses(:one).evaluation_instances.build(course: courses(:one), title: "test 2", date: 2017-12-2, passing_score: 5, top_score: 10)
+    assert_equal(0, evaluation.percentage_of_approved )
+
+    evaluation.scores.build(student: students(:one), score: 1, evaluation_instance: evaluation)
+    assert_equal(1, evaluation.scores.all)
+  end 
 
   test "the score must be equal to score specificate" do 
     evaluation = evaluation_instances(:one)
     assert_equal(80, (evaluation.score_of_student students(:one)))
   end
-
   
 end
