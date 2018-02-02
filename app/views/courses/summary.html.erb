@@ -60,7 +60,7 @@
                         <tr>
                         <td> Percentage of approved </td>
                             <% @evaluation_instances.order('date').each do | anInstance | %>
-                                <td><%= anInstance.percentage_of_approved %></td>
+                                <td><%= anInstance.percentage_of_approved "%" %></td>
                             <% end %>
                         </tr>
                     </tfoot>

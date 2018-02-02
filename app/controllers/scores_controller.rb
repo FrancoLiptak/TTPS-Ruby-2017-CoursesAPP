@@ -35,6 +35,9 @@ class ScoresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def score_params
-      params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id evaluation_instance_id])
+      scores = params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id evaluation_instance_id])
+      scores.fetch(:scores_attributes).each do | key, score | 
+        Score.find(score['id']).destroy if score['score'].empty?
+      end
     end
 end

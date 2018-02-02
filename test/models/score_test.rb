@@ -8,7 +8,7 @@ class ScoreTest < ActiveSupport::TestCase
   test "the result must belong to a student" do 
     score = scores(:one)
     score.student = nil 
-    assert_not score.save
+    assert_not score.valid?
   end
 
 
@@ -20,12 +20,12 @@ class ScoreTest < ActiveSupport::TestCase
   test "the result must be bigger than 0" do 
     score = scores(:one)
     score.score = -80 
-    assert_not score.save
+    assert_not score.valid?
   end
 
   test 'this score must be created' do
     score = scores(:one)
-    assert score.save
+    assert score.valid?
   end
 
 end

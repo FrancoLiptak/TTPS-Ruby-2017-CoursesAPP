@@ -8,37 +8,37 @@ class StudentTest < ActiveSupport::TestCase
   test "name cant be nil" do 
     student = students(:one)
     student.name = nil 
-    assert_not student.save
+    assert_not student.valid?
   end
 
   test "last name cant be nil" do 
     student = students(:one)
     student.last_name = nil 
-    assert_not student.save
+    assert_not student.valid?
   end
 
   test "dni cant be nil" do 
     student = students(:one)
     student.dni = nil 
-    assert_not student.save
+    assert_not student.valid?
   end
 
   test "student number cant be nil" do 
     student = students(:one)
     student.student_number = nil 
-    assert_not student.save
+    assert_not student.valid?
   end
 
   test "email cant be nil" do 
     student = students(:one)
     student.email = nil 
-    assert_not student.save
+    assert_not student.valid?
   end
 
   test "email must have correct format" do 
     student = students(:one)
     student.email = 'goku'
-    assert_not student.save
+    assert_not student.valid?
   end
   
   test "dni must be unique in a course" do 
@@ -59,6 +59,6 @@ class StudentTest < ActiveSupport::TestCase
 
   test "this student must be created" do 
     student = students(:one)
-    assert student.save
+    assert student.valid?
   end 
 end
