@@ -4,19 +4,20 @@ class ScoresController < ApplicationController
 
   # GET evaluation_instances/1/scores
   def index
+    @scores = @evaluation_instances.scores
   end
 
   # PUT evaluation_instances/1/scores/1
   def update
-    if @evaluation_instances.update_attributes(score_params)
+    @evaluation_instances.assign_attributes(score_params)
+    if @evaluation_instances.save
+      delete_null_scores
+      upload
       render action: 'index', notice: 'Score was successfully updated.'
     else 
+      upload
       render action: 'index', notice: 'An error has occurred.'
     end
-  end
-
-  # DELETE evaluation_instances/1/scores/1
-  def destroy
   end
 
   private
@@ -25,19 +26,19 @@ class ScoresController < ApplicationController
     @evaluation_instances.course.students.each do |student|
       @evaluation_instances.scores.build(student: student) unless student.you_already_have_score?(@evaluation_instances)
     end
-    render action: 'index'
   end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_evaluation_instances
       @evaluation_instances = EvaluationInstance.find(params[:evaluation_instance_id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def score_params
       scores = params.require(:evaluation_instance).permit(scores_attributes: %i[score id student_id evaluation_instance_id])
-      scores.fetch(:scores_attributes).each do | key, score | 
-        Score.find(score['id']).destroy if score['score'].empty?
+    end
+
+    def delete_null_scores
+      score_params.fetch(:scores_attributes).each do | key, value | 
+        Score.find(value['id']).destroy if value['id'] && value['score'].empty?
       end
     end
 end
