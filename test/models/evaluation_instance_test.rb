@@ -2,68 +2,63 @@ require 'test_helper'
 
 class EvaluationInstanceTest < ActiveSupport::TestCase
 
+  def setup
+    @instance = evaluation_instances(:one)
+  end
+
   # --- Test for validations ---
 
   test "title cant be nil" do 
-    evaluation = evaluation_instances(:one)
-    evaluation.title = nil 
-    assert_not evaluation.valid?
+    @instance.title = nil 
+    assert_not @instance.valid?
   end
 
   test "passing score cant be nil" do 
-    evaluation = evaluation_instances(:one)
-    evaluation.passing_score = nil 
-    assert_not evaluation.valid?
+    @instance.passing_score = nil 
+    assert_not @instance.valid?
   end
 
   test "top score cant be nil" do 
-    evaluation = evaluation_instances(:one)
-    assert_not evaluation.top_score = nil 
+    assert_not @instance.top_score = nil 
   end
 
   test "passing score cant be bigger than top score" do 
-    evaluation = evaluation_instances(:one)
-    evaluation.passing_score = 5
-    evaluation.top_score = 1
-    assert_not evaluation.valid?
+    @instance.passing_score = 5
+    @instance.top_score = 1
+    assert_not @instance.valid?
   end
 
   test "this evaluation instance must be created" do 
-    evaluation = evaluation_instances(:one)
-    assert evaluation.valid?
+    assert @instance.valid?
   end 
 
   test "title must be unique in a course" do 
-    evaluation = evaluation_instances(:one)
     another_evaluation = evaluation_instances(:two)
-    evaluation.title = another_evaluation.title
-    evaluation.course = another_evaluation.course
-    assert_not evaluation.valid?
+    @instance.title = another_evaluation.title
+    @instance.course = another_evaluation.course
+    assert_not @instance.valid?
   end 
 
   # --- Tests for methods --- 
 
   test "the student must be absent" do 
-    evaluation = evaluation_instances(:two)
-    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
-    assert_not (evaluation.present_student? student)
+    student = @instance.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
+    assert_not (@instance.present_student? student)
   end
   
   test "the student must be present" do 
-    evaluation = evaluation_instances(:one)
-    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
-    evaluation.scores.build(score: 20, student: student)
-    assert (evaluation.present_student? students(:one))
+    instance = evaluation_instances(:two)
+    student = instance.course.students.build(course: courses(:two), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
+    instance.scores.build(score: 20, student: student)
+    assert (instance.present_student? students(:one))
   end 
 
   test "must know the number of disapproved students" do
-    evaluation = evaluation_instances(:one)
-    assert_equal(1, evaluation.number_of_disapproved)
+    assert_equal(1, @instance.number_of_disapproved)
   end 
 
   test "must know the number of approved students" do 
-    evaluation = evaluation_instances(:one)
-    assert_equal(1, evaluation.number_of_approved)
+    assert_equal(1, @instance.number_of_approved)
   end 
 
   test "must know the percentage of approved students" do
