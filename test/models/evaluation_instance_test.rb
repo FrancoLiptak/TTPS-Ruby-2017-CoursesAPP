@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class EvaluationInstanceTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   # --- Test for validations ---
 
@@ -44,17 +41,17 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
     assert_not evaluation.valid?
   end 
 
-  # --- Tests for class methods --- 
+  # --- Tests for methods --- 
 
   test "the student must be absent" do 
     evaluation = evaluation_instances(:two)
-    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pedro.brost97@gmail.com")
+    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
     assert_not (evaluation.present_student? student)
   end
   
   test "the student must be present" do 
     evaluation = evaluation_instances(:one)
-    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pedro.brost97@gmail.com")
+    student = evaluation.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
     evaluation.scores.build(score: 20, student: student)
     assert (evaluation.present_student? students(:one))
   end 

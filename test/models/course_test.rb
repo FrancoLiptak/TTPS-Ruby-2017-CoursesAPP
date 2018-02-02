@@ -33,5 +33,5 @@ class CourseTest < ActiveSupport::TestCase
     assert_not course.valid?
   end
 
-  # --- tests for class methods isn't necessary ---
+  # --- tests for methods isn't necessary ---
 end

@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  # --- Test for validations ---
 
   test "name cant be nil" do 
     student = students(:one)
@@ -61,4 +60,20 @@ class StudentTest < ActiveSupport::TestCase
     student = students(:one)
     assert student.valid?
   end 
+
+  # --- Tests for methods --- 
+
+  test "the summary must be equal" do 
+    student = students(:one)
+    assert_equal("Liptak Franco - 12345/5", student.summary)
+  end
+
+  test "the student must know if he has results associated or not" do 
+    student = students(:one)
+    evaluation = evaluation_instances(:one)
+    assert (student.you_already_have_score? evaluation)
+
+    another_student = student.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
+    assert_not (another_student.you_already_have_score? evaluation)
+  end
 end
