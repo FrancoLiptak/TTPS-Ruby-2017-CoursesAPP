@@ -45,13 +45,6 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
     student = @instance.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
     assert_not (@instance.present_student? student)
   end
-  
-  test "the student must be present" do 
-    instance = evaluation_instances(:two)
-    student = instance.course.students.build(course: courses(:two), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
-    instance.scores.build(score: 20, student: student)
-    assert (instance.present_student? students(:one))
-  end 
 
   test "must know the number of disapproved students" do
     assert_equal(1, @instance.number_of_disapproved)
@@ -59,6 +52,11 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
 
   test "must know the number of approved students" do 
     assert_equal(1, @instance.number_of_approved)
+  end 
+
+  test "the student must be present" do 
+    instance = evaluation_instances(:two)
+    assert (instance.present_student? students(:two))
   end 
 
   test "must know the percentage of approved students" do
