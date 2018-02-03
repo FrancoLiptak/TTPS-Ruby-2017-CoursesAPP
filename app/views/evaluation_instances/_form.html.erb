@@ -11,33 +11,23 @@
 
 <div class="container col-md-12 col-md-offset-6"> 
   <%= simple_form_for([@evaluation_instance.course, @evaluation_instance]) do |f| %>
-  <form>
     <div class="form-row">
       <div class="form-group col-md-12">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, :class => "form-control" %>
+        <%= f.input :title, :class => "form-control", required: true, :error => false  %>
       </div>
       <div class="form-group col-md-12">
-        <%= f.label :date %><br />
-        <%= f.date_select :date, {  :order => [:day, :month, :year], 
-                                    :start_year => Time.current.year - 5, 
-                                    :end_year => Time.current.year + 5
-                                  }, 
-                                  { :class => "form-control" } %>
+        <%= f.input :date, as: :date, start_year: @evaluation_instance.course.year, end_year: @evaluation_instance.course.year + 1, order: [:day, :month, :year], required: true, :error => false %>
       </div>
       <div class="form-group col-md-6">
-        <%= f.label :passing_score %><br />
-        <%= f.number_field :passing_score, :class => "form-control" %>
+        <%= f.input :passing_score, :class => "form-control", required: true, :error => false  %>
       </div>
       <div class="form-group col-md-6">
-        <%= f.label :top_score %><br />
-        <%= f.number_field :top_score, :class => "form-control" %>
+        <%= f.input :top_score, :class => "form-control", required: true, :error => false  %>
       </div>
       <div class="form-group col-md-12">
-        <%= f.submit class: "btn btn-success" %>
+        <%= f.button :submit, class: "btn btn-success" %>
       </div>
     </div>
-  </form>
 
   <% end %>
 </div>
