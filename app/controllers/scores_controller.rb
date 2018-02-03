@@ -16,7 +16,7 @@ class ScoresController < ApplicationController
       render action: 'index', notice: 'Score was successfully updated.'
     else 
       upload
-      render action: 'index', notice: 'An error has occurred.'
+      render action: 'index', alert: 'An error has occurred.'
     end
   end
 

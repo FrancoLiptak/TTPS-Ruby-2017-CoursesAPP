@@ -30,7 +30,7 @@
                           <br>
                           <% if s.object.errors.any? %>
                             <div id="error_explanation" class="alert alert-danger">
-                              <h6><%= pluralize(s.object.errors.count, "error") %> prohibited this student from being saved:</h6>
+                              <h6><%= pluralize(s.object.errors.count, "error") %> prohibited this score from being saved:</h6>
                               <ul>
                                 <% s.object.errors.full_messages.each do |msg| %>
                                   <li class="font-italic"><%= msg %></li>

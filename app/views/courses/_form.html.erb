@@ -1,8 +1,8 @@
-<% if course.errors.any? %>
+<% if @course.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
-    <h4><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h4>
+    <h4><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h4>
     <ul>
-      <% course.errors.full_messages.each do |message| %>
+      <% @course.errors.full_messages.each do |message| %>
         <li class="font-italic"><%= message %></li>
       <% end %>
     </ul>
