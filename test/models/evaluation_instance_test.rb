@@ -70,10 +70,10 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
 
   test "must know the percentage of approved students" do
     evaluation = courses(:one).evaluation_instances.build(course: courses(:one), title: "test 2", date: 2017-12-2, passing_score: 5, top_score: 10)
-    assert_equal(0, evaluation.percentage_of_approved)
+    assert_equal(0.0, evaluation.percentage_of_approved)
 
-    evaluation.scores.build(student: students(:one), score: 9, evaluation_instance: evaluation)
-    assert_equal(100, evaluation.percentage_of_approved)
+    evaluation.scores.build(student: students(:one), score: 9)
+    assert_equal(100.00, evaluation.percentage_of_approved)
   end 
 
   

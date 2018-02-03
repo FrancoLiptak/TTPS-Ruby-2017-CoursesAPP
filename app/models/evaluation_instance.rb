@@ -20,11 +20,11 @@ class EvaluationInstance < ApplicationRecord
   end
 
   def number_of_disapproved
-    scores.all.to_a.reject { |score| score.approved? }.size
+    scores.size - number_of_approved
   end
 
   def number_of_approved
-    scores.all.to_a.select { |score| score.approved? }.size
+    scores.select(&:approved?).size
   end
 
   def number_of_absentees
@@ -32,10 +32,6 @@ class EvaluationInstance < ApplicationRecord
   end
 
   def percentage_of_approved
-    if scores.all.to_a.size == 0
-      0
-    else
-      ( number_of_approved.to_f / scores.all.to_a.size ) * 100
-    end
+    number_of_approved * 100.00 / course.students.size
   end
 end
