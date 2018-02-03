@@ -1,0 +1,15 @@
+<div class="container col-lg-9">
+  <div class="card mb-3 table-responsive">
+    <%= image_tag("portada-3.jpeg", class: "card-img-top img-fluid") %>
+    <div class="card-block">
+      <div class="card-header">
+        Edit course
+        <%= link_to 'Back', courses_path, class: 'btn btn-secondary btn-sm float-right' %>  
+      </div>
+        <div class="card-body">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

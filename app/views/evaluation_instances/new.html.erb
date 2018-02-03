@@ -1,0 +1,15 @@
+<div class="container col-lg-9">
+  <div class="card mb-3 table-responsive">
+    <%= image_tag("portada-2.jpeg", class: "card-img-top img-fluid") %>
+    <div class="card-block">
+      <div class="card-header">
+        New evaluation instance
+        <%= link_to 'Back', course_evaluation_instances_path, class: 'btn btn-secondary btn-sm float-right' %>  
+      </div>
+        <div class="card-body">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

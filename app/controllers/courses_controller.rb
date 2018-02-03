@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to courses_url, notice: 'Course was successfully created.'
     else
-      redirect_to courses_url, alert: 'There was a problem. Please try again.'
+      render action: 'new'
     end
   end
 
@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       redirect_to courses_url, notice: 'Course was successfully updated.'
     else
-      redirect_to courses_url, alert: 'There was a problem. Please try again.'
+      render action: 'edit'
     end
   end
 

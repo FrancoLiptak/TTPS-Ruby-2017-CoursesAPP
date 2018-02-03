@@ -21,7 +21,7 @@
                 <% @courses.each do |course| %>
                   <tr>
                     <td><%= course.year %></td>
-                    <td><%= link_to 'Edit', edit_course_path(course), :remote => true, :class => "btn btn-success" %></td>
+                    <td><%= link_to 'Edit', edit_course_path(course), :class => "btn btn-success" %></td>
                     <td>
                       <button data-id="<%= course.id %>" data-slice="9" data-toggle="modal" data-target="#delete-confirm" class="btn-delete btn btn-danger">
                         <%= 'Delete' %>
@@ -40,10 +40,9 @@
               <p>It seems that there is still no data of any course.</p>
             </div>
           <% end %>
-          <%= link_to 'New Course', new_course_path, :remote => true, :class => "btn btn-primary" %>
+          <%= link_to 'New Course', new_course_path, :class => "btn btn-primary" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div id="modal" style="display:none;"></div>

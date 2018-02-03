@@ -23,7 +23,7 @@ class EvaluationInstancesController < ApplicationController
     if @evaluation_instance.save
       redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully created.'
     else
-      redirect_to course_evaluation_instances_url, alert: 'There was a problem (remember that the title must be unique, and the passing score must be less than the maximum score). Please try again.'
+      render action: 'new'
     end
   end
 
@@ -32,7 +32,7 @@ class EvaluationInstancesController < ApplicationController
     if @evaluation_instance.update_attributes(evaluation_instance_params)
       redirect_to course_evaluation_instances_url, notice: 'Evaluation instance was successfully updated.'
     else
-      redirect_to course_evaluation_instances_url, alert: 'There was a problem (remember that the title must be unique, and the passing score must be less than the maximum score). Please try again.'
+      render action: 'edit'
     end
   end
 

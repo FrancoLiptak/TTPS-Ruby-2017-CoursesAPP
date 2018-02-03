@@ -11,10 +11,10 @@
 
 <%= simple_form_for(@course) do |form| %>
   <div class="form-inline col-md-12">
-    <div class="col-md-2">
+    <div class="col-md-4">
       <%= form.label :year, label:false %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <%= form.input :year, label:false, :error => false, :class => "form-control", collection: (Time.zone.today.year - 5..Time.zone.today.year + 5).to_a.reverse, :include_blank => t(:select_year)%>
     </div>
     <div class="col-md-4">

@@ -1,6 +1,6 @@
 <% if @evaluation_instance.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
-    <h4><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation_instance from being saved:</h4>
+    <h4><%= pluralize(@evaluation_instance.errors.count, "error") %> prohibited this evaluation instance from being saved:</h4>
     <ul>
       <% @evaluation_instance.errors.full_messages.each do |msg| %>
         <li class="font-italic"><%= msg %></li>

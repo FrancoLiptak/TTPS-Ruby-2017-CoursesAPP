@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to course_students_url, notice: 'Student was successfully created.'
     else
-      redirect_to course_students_url, alert: 'There was a problem.'
+      render action: 'new'
     end
   end
 
@@ -32,7 +32,7 @@ class StudentsController < ApplicationController
     if @student.update_attributes(student_params)
       redirect_to course_students_url, notice: 'Student was successfully updated.'
     else
-      redirect_to course_students_url, alert: 'There was a problem.'
+      render action: 'edit'
     end
   end
 
