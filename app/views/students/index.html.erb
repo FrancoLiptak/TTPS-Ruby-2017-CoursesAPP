@@ -38,6 +38,18 @@
                     </button>
                   </td>
                 </tr>
+
+                <% if student.errors.any? %>
+                  <div id="error_explanation" class="alert alert-danger">
+                    <h4><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h4>
+                    <ul>
+                      <% student.errors.full_messages.each do |msg| %>
+                        <li class="font-italic"><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
               <% end %>
             </table>
           <% else %>

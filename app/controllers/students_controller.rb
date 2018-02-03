@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to course_students_url, notice: 'Student was successfully created.'
     else
-      redirect_to course_students_url, alert: 'There was a problem (remember that the student number and DNI must be unique). Please try again.'
+      redirect_to course_students_url, alert: 'There was a problem (remember that the student number and DNI must be unique, the name and last name can only contain letters, the DNI can only contain number). Please try again.'
     end
   end
 
@@ -32,7 +32,7 @@ class StudentsController < ApplicationController
     if @student.update_attributes(student_params)
       redirect_to course_students_url, notice: 'Student was successfully updated.'
     else
-      redirect_to course_students_url, notice: 'There was a problem (remember that the student number and DNI must be unique). Please try again.'
+      redirect_to course_students_url, alert: 'There was a problem (remember that the student number and DNI must be unique, the name and last name can only contain letters, the DNI can only contain number).'
     end
   end
 
