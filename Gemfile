@@ -20,6 +20,7 @@ gem 'nested_scaffold'
 gem 'faker', '~> 1.6', '>= 1.6.6' # Usada para generar los nombres de alumnos truchos.
 gem 'simple_form', '~> 3.5'
 gem 'devise'
+gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
