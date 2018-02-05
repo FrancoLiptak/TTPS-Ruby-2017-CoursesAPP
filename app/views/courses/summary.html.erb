@@ -27,9 +27,9 @@
                             <% if anInstance.present_student? student  %>
                                 <% score = anInstance.score_of_student student %>
                                 <% if score.approved? %>
-                                    <td class="table-success"> Approved (<%= score.to_s %>) </td>
+                                    <td class="table-success"> Approved (<%= score.score %>) </td>
                                 <% else %>
-                                    <td class="table-danger"> Disapproved (<%= score.to_s %>) </td>
+                                    <td class="table-danger"> Disapproved (<%= score.score %>) </td>
                                 <% end %>
                             <% else %>
                                 <td class="table-warning"> Absent </td>

@@ -2,71 +2,40 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
 
-  def setup
-    @student = students(:one)
-  end
+                            # 1 assert for test.
 
   # --- Test for validations ---
 
-  test "name cant be nil" do 
-    @student.name = nil 
-    assert_not @student.valid?
+  test "some attributes cant be nil (name, last name, dni, student number, email)" do 
+    assert_not Student.new.valid?
   end
 
-  test "last name cant be nil" do 
-    @student.last_name = nil 
-    assert_not @student.valid?
+  test "email must have correct format" do
+    assert_not Student.new(course: courses(:one), last_name: 'Son', name: 'Goku', dni: 30234923, student_number: 12367/6, email: 'goku').valid?
   end
 
-  test "dni cant be nil" do 
-    @student.dni = nil 
-    assert_not @student.valid?
-  end
-
-  test "student number cant be nil" do 
-    @student.student_number = nil 
-    assert_not @student.valid?
-  end
-
-  test "email cant be nil" do 
-    @student.email = nil 
-    assert_not @student.valid?
-  end
-
-  test "email must have correct format" do 
-    @student.email = 'goku'
-    assert_not @student.valid?
-  end
+  # Test for unniquess
   
   test "dni must be unique in a course" do
-    another_student = students(:two)
-    @student.dni = another_student.dni
-    @student.course = another_student.course   
-    assert_not @student.valid?
+    assert_not Student.new(course: courses(:one), last_name: 'Son', name: 'Goku', dni: students(:one).dni, student_number: 45632/8, email: 'goku@saiyajin.com').valid?
   end 
 
   test "student number must be unique in a course" do 
-    another_student = students(:two)
-    @student.student_number = another_student.student_number
-    @student.course = another_student.course
-    assert_not @student.valid?
+    assert_not Student.new(course: courses(:one), last_name: 'Son', name: 'Goku', dni: 30234923, student_number: students(:one).student_number, email: 'goku@saiyajin.com').valid?
   end
-
-  test "this student must be created" do 
-    assert @student.valid?
-  end 
 
   # --- Tests for methods --- 
 
   test "the summary must be equal" do 
-    assert_equal("Liptak Franco - 12345/5", @student.summary)
+    assert_equal("Liptak Franco - 12345/5", students(:one).summary)
   end
 
-  test "the student must know if he has results associated or not" do 
-    evaluation = evaluation_instances(:one)
-    assert (@student.you_already_have_score? evaluation)
+  test "the student must know if he has results associated or not, in this case yes" do # CAMBIAR POR METODO USADO
+    assert (students(:one).you_already_have_score? evaluation_instances(:one))
+  end
 
-    another_student = @student.course.students.build(course: courses(:one), last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
-    assert_not (another_student.you_already_have_score? evaluation)
+  test "the student must know if he has results associated or not, in this case no" do # CAMBIAR POR METODO USADO
+    student = Student.new(course: courses(:one), last_name: 'Son', name: 'Goku', dni: 34567891, student_number: 45632/8, email: 'goku@saiyajin.com')
+    assert_not (student.you_already_have_score? evaluation_instances(:one))
   end
 end

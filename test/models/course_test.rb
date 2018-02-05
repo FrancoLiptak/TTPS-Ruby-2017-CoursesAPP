@@ -2,33 +2,24 @@ require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
 
-  def setup
-    @course = courses(:one)
-  end
-
   # --- Test for validations ---
 
-  test "this course must be created" do 
-    assert @course.valid?
-  end 
-
   test "'year' can't be nil" do
-    @course.year = nil
-    assert_not @course.valid?
+    assert_not Course.new.valid?
   end
 
   test "'year' must be unique" do
-    @course.year = 2020
-    @course.save
-    another_course = courses(:two)
-    another_course.year = 2020
-    assert_not another_course.valid?
+    assert_not Course.new(year: 2017).valid? # see ../test/fixtures/courses.yml
   end
 
-  test "the course can't be old" do 
-    @course.year = 1000
-    assert_not @course.valid?
+  test "you can not create a course more than 5 years ago" do
+    assert_not Course.new(year: 2012).valid?
+  end
+
+  test "you can not create a course for 5 years + from now" do 
+    assert_not Course.new(year: 2024).valid?
   end
 
   # --- tests for methods isn't necessary ---
+
 end
