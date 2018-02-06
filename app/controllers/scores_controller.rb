@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
 
   def upload
     @evaluation_instances.course.students.each do |student|
-      @evaluation_instances.scores.build(student: student) unless student.you_already_have_score?(@evaluation_instances)
+      @evaluation_instances.scores.build(student: student) unless !(Score.has_score_for(self, @evaluation_instances).empty?)
     end
   end
 

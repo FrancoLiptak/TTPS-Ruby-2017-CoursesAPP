@@ -17,8 +17,4 @@ class Student < ApplicationRecord
     "#{last_name} #{name} - #{student_number}"
   end
 
-  def you_already_have_score?(evaluation)
-    !(Score.has_score_for(self, evaluation).empty?)
-  end
-
 end

@@ -30,12 +30,4 @@ class StudentTest < ActiveSupport::TestCase
     assert_equal("Liptak Franco - 12345/5", students(:one).summary)
   end
 
-  test "the student must know if he has results associated or not, in this case yes" do # CAMBIAR POR METODO USADO
-    assert (students(:one).you_already_have_score? evaluation_instances(:one))
-  end
-
-  test "the student must know if he has results associated or not, in this case no" do # CAMBIAR POR METODO USADO
-    student = Student.new(course: courses(:one), last_name: 'Son', name: 'Goku', dni: 34567891, student_number: 45632/8, email: 'goku@saiyajin.com')
-    assert_not (student.you_already_have_score? evaluation_instances(:one))
-  end
 end

@@ -47,19 +47,5 @@ class EvaluationInstanceTest < ActiveSupport::TestCase
     evaluation.scores.build(student: students(:one), score: 9)
     assert_equal(100.00, evaluation.percentage_of_approved)
   end
-
-  test "the student must be absent" do # CAMBIAR POR USAR PRESENT STUDENT
-    student = @instance.course.students.build(last_name: "Brost", name: "Pepe", dni: 38659423, student_number: 56564/5, email: "pepo.brost@gmail.com")
-    assert_not (@instance.present_student? student)
-  end
-
-  test "the student must be present" do # CAMBIAR POR USAR PRESENT STUDENT
-    instance = evaluation_instances(:two)
-    assert (instance.present_student? students(:two))
-  end 
-
-  test "the score must be equal to score specificate" do # CAMBIAR POR USAR SCORE OF STUDENT
-    assert_equal(80, (@instance.score_of_student students(:one)).score)
-  end
   
 end

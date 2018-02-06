@@ -24,8 +24,8 @@
                         <tr>
                         <td><%= student.summary %></td>
                         <% @evaluation_instances.order('date').each do | anInstance | %>
-                            <% if anInstance.present_student? student  %>
-                                <% score = anInstance.score_of_student student %>
+                            <% if ! anInstance.scores.where(student: student).empty?  %>
+                                <% score = anInstance.scores.where(student: student).first %>
                                 <% if score.approved? %>
                                     <td class="table-success"> Approved (<%= score.score %>) </td>
                                 <% else %>

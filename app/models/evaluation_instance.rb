@@ -10,15 +10,6 @@ class EvaluationInstance < ApplicationRecord
 
   accepts_nested_attributes_for :scores, reject_if: proc { |a| a['score'].blank? }
 
-
-  def score_of_student student
-    scores.where(student: student).first
-  end
-
-  def present_student? student 
-    ! scores.where(student: student).empty?
-  end
-
   def number_of_disapproved
     scores.size - number_of_approved
   end
