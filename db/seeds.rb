@@ -11,7 +11,7 @@ User.create(email: 'admin@admin.com', password: 123456)
 Course.create year: Time.zone.today.year
 Course.create year: (Time.zone.today.year - 1)
 
-20.times do |i|
+30.times do |i|
   course = Course.all.sample
   name = Faker::GameOfThrones.character
   split_name = name.split(/\W+/)
