@@ -23,6 +23,6 @@ class EvaluationInstance < ApplicationRecord
   end
 
   def percentage_of_approved
-    number_of_approved * 100.00 / course.students.size
+    (number_of_approved * 100.00 / course.students.size).round(2)
   end
 end

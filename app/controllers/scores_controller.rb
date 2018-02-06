@@ -11,8 +11,8 @@ class ScoresController < ApplicationController
   def update
     @evaluation_instances.assign_attributes(score_params)
     if @evaluation_instances.save
-      delete_null_scores
       upload
+      delete_null_scores
       render action: 'index', notice: 'Score was successfully updated.'
     else 
       upload
@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
 
   def upload
     @evaluation_instances.course.students.each do |student|
-      @evaluation_instances.scores.build(student: student) unless !(Score.has_score_for(self, @evaluation_instances).empty?)
+      @evaluation_instances.scores.build(student: student) unless !(Score.has_score_for(student, @evaluation_instances).empty?)
     end
   end
 
