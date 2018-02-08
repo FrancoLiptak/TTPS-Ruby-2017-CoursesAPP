@@ -13,11 +13,11 @@ class ScoreTest < ActiveSupport::TestCase
   # --- Test for methods ---
 
 
-  test 'the result must know if approve or not, in this case, approved' do 
+  test 'the result must know if approve or not, in this case, disapproved' do 
     assert_not scores(:three).approved?
   end
 
-  test 'the result must know if approve or not, in this case, disapproved' do 
+  test 'the result must know if approve or not, in this case, approved' do 
     assert scores(:one).approved?
   end
 
